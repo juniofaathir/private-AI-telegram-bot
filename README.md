@@ -1,6 +1,8 @@
 # private-AI-telegram-bot
 An AI LLM powered telegram bot that run on your local machine. 100% privacy and only CPU needed. But if you have GPU, it would decrease the inferencing time further. It means, faster at processing and generating the chat!
 
+In addition, this telegram chatbot has some short-term memory. I'm setting it to remember only two chat before due to my potato laptop. If you have better machine with bigger & better RAM(Or even GPU!), you can modify itu to remember more chat history for better chatting experiences.
+
 This project has a lot of room for improving. My plan for the future about this project is to create a lively and talkative digital AI asistant that can help any of user needs. It'll be have long-term memory and access to user's productivity apps like Google Calendar
 
 ## How to run
