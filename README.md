@@ -4,7 +4,10 @@ An AI LLM powered telegram bot that run on your local machine. 100% privacy and 
 In addition, this telegram chatbot has some short-term memory. I'm setting it to remember only two chat before due to my potato laptop 🥔 💻. If you have better machine with bigger & better RAM(Or even GPU!), you can modify itu to remember more chat history for better chatting experiences.
 
 ## Future Plan 
-This project has a lot of room for improving. My plan for the future about this project is to create a lively and talkative digital AI asistant that can help any of user needs. It'll be have long-term memory and access to user's productivity apps like Google Calendar
+This project has a lot of room for improving. My plan for the future about this project is to create a lively, talkative, and smart digital AI asistant that can help any of user needs. Now I'm working on adding:
+- [ ] Long-Term Memory using vector database
+- [ ] Access to Google Calendar
+- [ ] Access to internet for more knowledge and helping user to make decisions
 
 ## How to run
 ### Windows
