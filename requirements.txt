@@ -1,0 +1,3 @@
+openai
+srsly
+python-telegram-bot
