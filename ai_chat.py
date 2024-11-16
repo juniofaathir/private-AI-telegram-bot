@@ -30,7 +30,7 @@ class AIChat:
         base_url: str,
         model: str,
         system_prompt: Optional[str] = None,
-        memory_size: int = 10,
+        memory_size: int = 20,
         timezone: str = "Asia/Jakarta"
     ):
         """
@@ -38,9 +38,10 @@ class AIChat:
         
         Args:
             api_key (str): OpenAI API key
+            base_url (str): Local LLM URL with OpenAI schema
             system_prompt (str): System prompt to define AI behavior
-            model (str, optional): Model to use. Defaults to "gpt-3.5-turbo"
-            memory_size (int, optional): Number of messages to remember. Defaults to 10
+            model (str, optional): Model to use.
+            memory_size (int, optional): Number of messages to remember. Defaults to 20
             timezone (str, optional): Timezone for time awareness. Defaults to "Asia/Jakarta"
         """
         self.client = OpenAI(
@@ -48,16 +49,14 @@ class AIChat:
             base_url = base_url
         )
         self.model = model
-        if system_prompt == None:
-            self.base_system_prompt = prompts["system_default"]
-        else:
-            self.base_system_prompt = system_prompt
         self.memory_size = memory_size
         self.timezone = pytz.timezone(timezone)
         self.conversation_history = deque(maxlen = memory_size)
-        
-        # Initialize conversation with time-aware system prompt
-        self._update_system_prompt()
+        if system_prompt == None:
+            self.system_prompt = prompts["system_default"]
+        else:
+            self.system_prompt = system_prompt
+        self._add_to_history("system", self.system_prompt)
 
     def _get_current_time(self) -> str:
         """
@@ -68,19 +67,6 @@ class AIChat:
         """
         current_time = datetime.now(self.timezone)
         return current_time.strftime("%A, %d %B %Y %H:%M:%S %Z")
-
-    def _update_system_prompt(self) -> None:
-        """
-        Update system prompt with current time information.
-        """
-        current_time = self._get_current_time()
-        time_aware_prompt = prompts["time_prompt"].format(
-            current_time = current_time,
-            base_system_prompt = self.base_system_prompt
-        )
-
-        # Update system prompt in history
-        self._add_to_history("system", time_aware_prompt)
 
     def _add_to_history(self, role: str, content: str) -> None:
         """
@@ -114,10 +100,6 @@ class AIChat:
         Returns:
             List[Dict[str, str]]: List of messages formatted for the API
         """
-        # Update system prompt with current time
-        self._update_system_prompt()
-        
-        # Prepare messages
         messages = []
         for msg in self.conversation_history:
             messages.append({
@@ -185,4 +167,4 @@ class AIChat:
         """
         self.conversation_history.clear()
         if keep_system_prompt:
-            self._update_system_prompt()
+            self._add_to_history("system", self.system_prompt)
