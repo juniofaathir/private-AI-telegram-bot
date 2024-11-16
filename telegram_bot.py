@@ -129,10 +129,10 @@ class TelegramAIBot:
 
 if __name__ == "__main__":    
     bot = TelegramAIBot(
-        telegram_token = "6373263211:AAEtw-ng4l58YqcCwvm_Mi-q0NqGCsB7QCQ",
-        base_url = "http://10.12.1.175:11112/v1",
-        openai_api_key = "sk-hynix",
-        model = "gemma2-9b-cpt-sahabatai-v1-instruct"
+        telegram_token = "qwertyuiop",
+        base_url = ".../v1",
+        openai_api_key = "abcdefghij",
+        model = "model-name"
     )
     
     bot.run()
